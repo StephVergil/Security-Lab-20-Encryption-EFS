@@ -1,52 +1,93 @@
-# Security Lab 20: Encryption EFS
+# Security Lab: Encryption EFS
 
-This lab focuses on exploring the Encryption File System (EFS) on Windows. It includes tasks related to configuring EFS, managing keys, creating and accessing encrypted files, and understanding the importance of strong password policies for securing EFS.
+This lab explores the practical implementation and management of the Encrypting File System (EFS) on Windows systems. By configuring EFS, managing encryption keys, and examining password policies, the lab highlights the role of secure data encryption in protecting sensitive information from unauthorized access.
 
-### Objectives
-- Understand the file system requirements and commands for EFS usage.
+---
+
+## Objectives
+- Understand the file system requirements and commands for EFS functionality.
 - Learn to back up and restore EFS encryption keys.
-- Explore password policies and their impact on accessing encrypted files.
-- Install and use Personal Information Exchange (PFX) keys to recover encrypted files.
+- Explore the impact of password policies on accessing encrypted files.
+- Use Personal Information Exchange (PFX) keys for recovering encrypted files.
 
-### Key Results
-- **Required File System**: NTFS is required for EFS functionality.
-- **Creating Users, Files, and Directories**:
-  - **Create a User**: `net user jessejames cowboy /add`
-  - **Create a File**: `echo 123-45-6789 > SSN.txt`
-  - **Create a Directory**: `mkdir private`
-- **Managing EFS Keys**:
-  - Back up EFS keys via:  
-    `START > Control Panel > User Accounts and Family Safety > User Accounts > Manage your File Encryption Certificates`
-  - Password Changes:  
-    - If the password is changed by an administrator, EFS files become inaccessible.  
-    - If the user changes their password, EFS remains unaffected.  
-  - Change Password Command: `net user student 123`
-- **Importance of Strong Passwords**:
-  - Strong passwords protect recovery keys from being compromised.
-- **Recovering Files Using PFX**:
-  - **Password Requirement**: A password is mandatory for PFX key installation.
-  - **Default Color for EFS Files**: Green.
-  - **Certificate Import Success**:
-    - Confirmed via a pop-up from the Certificate Import Wizard.  
-    - Verification by opening the encrypted file.  
-  - **PFX Definition**: Personal Information Exchange.
+---
 
-### Recommendations
-- Back up EFS keys and store them securely to avoid losing access to encrypted files.
-- Use strong passwords for recovery keys to enhance security.
-- Regularly verify access to encrypted files after password changes or key imports.
+## Key Results
 
-### Tools Used
-- **EFS**: For file encryption on Windows.
-- **Command Line**: For user, file, and directory management.
-- **PFX Files**: For encryption key recovery.
+### **File System Requirements**
+- **NTFS Required**: EFS operates only on NTFS file systems, which support advanced security features.
 
-### Project Resources
+### **Creating Users, Files, and Directories**
+- **Steps**:
+  - **Create a User**: Add a new user account.
+    ```bash
+    net user jessejames cowboy /add
+    ```
+  - **Create a File**: Generate a sample file for encryption.
+    ```bash
+    echo 123-45-6789 > SSN.txt
+    ```
+  - **Create a Directory**: Organize encrypted files into directories.
+    ```bash
+    mkdir private
+    ```
+
+### **Managing EFS Encryption Keys**
+- **Key Backup and Restoration**:
+  - Navigate to:
+    ```
+    START > Control Panel > User Accounts > Manage your File Encryption Certificates
+    ```
+  - Export encryption keys to a secure location.
+- **Password Changes**:
+  - **User-Initiated Changes**: Do not affect access to encrypted files.
+  - **Administrator-Initiated Changes**: Render encrypted files inaccessible due to new encryption keys.
+  - Change password via command:
+    ```bash
+    net user student 123
+    ```
+
+### **Importance of Strong Passwords**
+- Protect recovery keys from unauthorized access.
+- Enhance overall system security by preventing brute-force attacks on PFX files.
+
+### **Recovering Files Using PFX**
+- **Password Requirement**: Mandatory during PFX key installation to ensure secure access.
+- **Verification**:
+  - Confirm successful certificate import through the Certificate Import Wizard.
+  - Open encrypted files to verify access.
+- **EFS Indicators**:
+  - Encrypted files appear in green text.
+  - Imported keys enable file decryption and access restoration.
+
+---
+
+## Recommendations
+- **Secure Key Backups**: Regularly back up EFS keys and store them securely to prevent data loss.
+- **Strong Password Practices**: Implement complex passwords for recovery keys to enhance security.
+- **Regular Testing**: Periodically verify access to encrypted files and functionality of backup keys.
+- **Password Policy Enforcement**: Use policies that ensure strong and unique passwords for users.
+
+---
+
+## Tools Used
+- **EFS (Encrypting File System)**: Native Windows feature for encrypting data.
+- **Command Line**: Used for user, file, and directory management.
+- **PFX Files**: Personal Information Exchange format for encryption key recovery.
+
+---
+
+## Project Resources
 - **Project Link**: [Security Lab 20: Encryption EFS](https://github.com/StephVergil/Security-Lab-20-Encryption-EFS/blob/main/Security%20Lab%2020%20Encryption%20EFS.docx.pdf)
-- [Microsoft EFS Documentation](https://docs.microsoft.com/en-us/windows/security/information-protection/efs)
+- [Microsoft EFSRPC Protocol Documentation](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-efsr/08796ba8-01c8-4872-9221-1000ec2eff31) 
+- [File Encryption Documentation](https://learn.microsoft.com/en-us/windows/win32/fileio/file-encryption) 
 
-### Conclusion
-This lab demonstrates the critical role of encryption and secure key management in protecting sensitive data. By leveraging EFS and strong password practices, users can ensure data confidentiality and prevent unauthorized access.
+---
 
-### Disclaimer
-This project was conducted in a controlled environment. Unauthorized use of these techniques or tools outside such an environment may violate ethical guidelines and legal regulations.
+## Conclusion
+This lab underscores the critical role of encryption in safeguarding sensitive data. By leveraging EFS, managing encryption keys, and enforcing strong password policies, organizations can enhance data confidentiality and mitigate risks of unauthorized access. Regular backups and secure management practices ensure the reliability of EFS in real-world scenarios.
+
+---
+
+## Disclaimer
+This project was conducted in a controlled academic environment. Unauthorized use of these techniques or tools outside such an environment may violate ethical guidelines and legal regulations.
